@@ -27,3 +27,5 @@ public class Main extends Application {
         LogInStage.show();
     }
 }
+
+// add comment to test Jira issue and code function
