@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller">
+   <children>
+      <Text layoutX="567.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="☰" />
+      <MenuButton ellipsisString="" layoutX="557.0" layoutY="7.0" mnemonicParsing="false" opacity="0.0" prefHeight="26.0" prefWidth="12.0" text="☰">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Update Details" />
+            <MenuItem mnemonicParsing="false" text="Update Goals" />
+            <MenuItem mnemonicParsing="false" text="Log Out" />
+            <MenuItem mnemonicParsing="false" text="Close App" />
+         </items>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </MenuButton>
+      <ButtonBar layoutY="361.0" prefHeight="40.0" prefWidth="600.0">
+        <buttons>
+          <Button mnemonicParsing="false" style="-fx-background-color: #87CEEB;" text="Home" textAlignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Button>
+            <Button mnemonicParsing="false" style="-fx-background-color: #003C72;" text="Goals" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Button>
+            <Button mnemonicParsing="false" style="-fx-background-color: #87CEEB;" text="Map">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Button>
+            <Button mnemonicParsing="false" style="-fx-background-color: #87CEEB;" text="Calendar">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Button>
+        </buttons>
+         <padding>
+            <Insets right="125.0" />
+         </padding>
+      </ButtonBar>
+      <ImageView fitHeight="40.0" fitWidth="60.0" layoutX="13.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true">
+       <image>
+           <Image url="@Img/QUT-Logo.jpg" />
+       </image>
+       </ImageView>
+      <VBox layoutX="65.0" layoutY="53.0" prefHeight="16.0" prefWidth="100.0" style="-fx-border-color: black;">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hours Studied KPI">
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </VBox.margin>
+            </Text>
+         </children>
+      </VBox>
+      <VBox layoutX="277.0" layoutY="52.0" prefHeight="19.0" prefWidth="40.0" style="-fx-border-color: black;">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="GPA KPI" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </VBox.margin>
+            </Text>
+         </children>
+      </VBox>
+      <VBox layoutX="440.0" layoutY="52.0" prefHeight="16.0" prefWidth="100.0" style="-fx-border-color: black;">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Attendance Rate KPI">
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </VBox.margin>
+            </Text>
+         </children>
+      </VBox>
+      <Button layoutX="91.0" layoutY="283.0" mnemonicParsing="false" text="Update Goal" />
+      <Button layoutX="263.0" layoutY="283.0" mnemonicParsing="false" text="Update Goal" />
+      <Button layoutX="458.0" layoutY="283.0" mnemonicParsing="false" text="Update Goal" />
+      <VBox layoutX="75.0" layoutY="256.0" prefHeight="16.0" prefWidth="100.0" style="-fx-border-color: black;">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hours Studied Goal">
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </VBox.margin>
+            </Text>
+         </children>
+      </VBox>
+      <VBox layoutX="263.0" layoutY="255.0" prefHeight="19.0" prefWidth="40.0" style="-fx-border-color: black;">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="GPA KPI Goal" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </VBox.margin>
+            </Text>
+         </children>
+      </VBox>
+      <VBox layoutX="426.0" layoutY="255.0" prefHeight="16.0" prefWidth="100.0" style="-fx-border-color: black;">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Attendance Rate KPI Goal">
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </VBox.margin>
+            </Text>
+         </children>
+      </VBox>
+      <LineChart layoutX="391.0" layoutY="80.0" prefHeight="150.0" prefWidth="178.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <LineChart layoutX="203.0" layoutY="80.0" prefHeight="150.0" prefWidth="178.0">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <LineChart layoutX="5.0" layoutY="80.0" prefHeight="150.0" prefWidth="170.0">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis side="LEFT" />
+         </yAxis>
+      </LineChart>
+   </children>
+</AnchorPane>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.homePageController">
+   <children>
+      <Text layoutX="567.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="☰" />
+      <MenuButton ellipsisString="" layoutX="557.0" layoutY="7.0" mnemonicParsing="false" opacity="0.0" prefHeight="26.0" prefWidth="12.0" text="☰">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Update Details" />
+            <MenuItem mnemonicParsing="false" text="Update Goals" />
+            <MenuItem mnemonicParsing="false" text="Log Out" />
+            <MenuItem mnemonicParsing="false" text="Close App" />
+         </items>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </MenuButton>
+      <ButtonBar layoutY="361.0" prefHeight="40.0" prefWidth="600.0">
+        <buttons>
+          <Button mnemonicParsing="false" style="-fx-background-color: #003C72;" text="Home" textAlignment="CENTER" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Button>
+            <Button mnemonicParsing="false" style="-fx-background-color: #87CEEB;" text="Goals">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Button>
+            <Button mnemonicParsing="false" style="-fx-background-color: #87CEEB;" text="Map">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Button>
+            <Button mnemonicParsing="false" style="-fx-background-color: #87CEEB;" text="Calendar">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Button>
+        </buttons>
+         <padding>
+            <Insets right="125.0" />
+         </padding>
+      </ButtonBar>
+      <ImageView fitHeight="40.0" fitWidth="60.0" layoutX="13.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true">
+       <image>
+           <Image url="@Img/QUT-Logo.jpg" />
+       </image>
+       </ImageView>
+      <Text layoutX="13.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AI Generated quote based on the Users Timetable Data" wrappingWidth="212.53668212890625" />
+      <ProgressIndicator layoutX="382.0" layoutY="53.0" progress="0.0" />
+      <ProgressIndicator layoutX="287.0" layoutY="53.0" progress="0.0" />
+      <ProgressIndicator layoutX="466.0" layoutY="53.0" progress="0.0" />
+      <Text layoutX="274.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hours Studied" textAlignment="CENTER" wrappingWidth="51.439453125" />
+      <Text layoutX="369.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GPA" textAlignment="CENTER" wrappingWidth="51.439453125" />
+      <Text layoutX="445.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attendance" textAlignment="CENTER" wrappingWidth="68.23944091796875" />
+      <SplitPane dividerPositions="0.2599206349206349" layoutX="12.0" layoutY="114.0" orientation="VERTICAL" prefHeight="127.0" prefWidth="102.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Text layoutX="28.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Monday" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Text layoutX="16.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="dot points on what events are happening" wrappingWidth="68.23944091796875" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <SplitPane dividerPositions="0.2599206349206349" layoutX="133.0" layoutY="114.0" orientation="VERTICAL" prefHeight="127.0" prefWidth="102.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Text layoutX="28.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tuesday" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+         </items>
+      </SplitPane>
+      <SplitPane dividerPositions="0.2599206349206349" layoutX="255.0" layoutY="114.0" orientation="VERTICAL" prefHeight="127.0" prefWidth="102.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Text layoutX="19.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wednesday" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+         </items>
+      </SplitPane>
+      <SplitPane dividerPositions="0.2599206349206349" layoutX="375.0" layoutY="114.0" orientation="VERTICAL" prefHeight="127.0" prefWidth="102.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Text layoutX="26.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thursday" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+         </items>
+      </SplitPane>
+      <SplitPane dividerPositions="0.2599206349206349" layoutX="492.0" layoutY="114.0" orientation="VERTICAL" prefHeight="127.0" prefWidth="102.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Text layoutX="39.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Friday" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+         </items>
+      </SplitPane>
+      <Text layoutX="81.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AI generated Weekly overview that tells a user what they did good at and suggests what to improve on basd on your goals, due assignments, and workload into account" wrappingWidth="464.8753662109375" />
+   </children>
+</AnchorPane>
