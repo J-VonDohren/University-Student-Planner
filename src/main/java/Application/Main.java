@@ -4,9 +4,11 @@ import Application.Database.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import java.io.IOException;
@@ -49,7 +51,6 @@ public class Main extends Application {
 
         changeScene("/FXML/Login-Page.fxml"); // loads the login page as the first scene
 
-        applicationStage.show(); // shows the stage
     }
 
     public void formatStage(){
