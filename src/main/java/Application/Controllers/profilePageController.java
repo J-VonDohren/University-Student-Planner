@@ -124,20 +124,27 @@ public class profilePageController extends sceneLoaderController {
 
     public Boolean validateChanges(){
         String[] fields = {firstNameField.getText(),lastNameField.getText(),EmailField.getText(),phoneNumberField.getText()};
-        //use regular input validation
-        String errorMessage=inputValidation(currentUserNumber,firstNameField.getText(),lastNameField.getText(),EmailField.getText()
-                ,userSignup.getLoginPassword(),userSignup.getLoginPassword());
-        if (errorMessage != null) {
-            notice.setText(errorMessage);
-            notice.setVisible(true);
-            notice.setFill(Color.RED);
-            return false;
+        //check no fields are empty
+        for (String value : fields){
+            if (value.isEmpty()){
+                notice.setText("don't leave fields empty.");
+                notice.setVisible(true);
+                notice.setFill(Color.RED);
+                return false;
+            }
         }
         //check fields have been changed
         String[] currentValues = {userSignup.getFirstName(),userSignup.getLastName()
                 ,userSignup.getEmail(),userSignup.getPhoneNumber()};
         if (Arrays.equals(fields,currentValues)) {
-            notice.setText("no fields have been changed");
+            notice.setText("no fields have been changed.");
+            notice.setVisible(true);
+            notice.setFill(Color.RED);
+            return false;
+        }
+        //check for correct email format
+        if (!EmailField.getText().matches(".+@.+")) {
+            notice.setText("invalid email.");
             notice.setVisible(true);
             notice.setFill(Color.RED);
             return false;
@@ -162,11 +169,11 @@ public class profilePageController extends sceneLoaderController {
                 phoneNumber.setText("Phone number: "+userSignup.getPhoneNumber());
                 setProfileImage(profileBackGround,profileText,userSignup);
 
-                notice.setText("changes saved successfully");
+                notice.setText("changes saved successfully.");
                 notice.setVisible(true);
                 notice.setFill(Color.GREEN);
             }catch (SQLException e) {
-                notice.setText("an error has occurred");
+                notice.setText("an error has occurred.");
                 notice.setVisible(true);
                 notice.setFill(Color.RED);
                 System.out.println("Update failed: "+e);

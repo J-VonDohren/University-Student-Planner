@@ -81,28 +81,33 @@
       </Text>
       </StackPane>
 
-      <Label layoutX="142.0" layoutY="150.0" prefHeight="26.0" prefWidth="235.0" fx:id="firstName"/>
-      <Label layoutX="142.0" layoutY="175.0" prefHeight="26.0" prefWidth="235.0" fx:id="lastName"/>
-      <Label layoutX="142.0" layoutY="200.0" prefHeight="26.0" prefWidth="235.0" fx:id="Email" />
-      <Label layoutX="142.0" layoutY="225.0" prefHeight="26.0" prefWidth="235.0" fx:id="phoneNumber" />
+      <Label layoutX="142.0" layoutY="150.0" prefHeight="26.0" prefWidth="300.0" fx:id="firstName">
+            <font><Font size="18.0"/></font></Label>
+      <Label layoutX="142.0" layoutY="180.0" prefHeight="26.0" prefWidth="300.0" fx:id="lastName">
+            <font><Font size="18.0"/></font></Label>
+      <Label layoutX="142.0" layoutY="210.0" prefHeight="26.0" prefWidth="300.0" fx:id="Email" >
+            <font><Font size="18.0"/></font></Label>
+      <Label layoutX="142.0" layoutY="240.0" prefHeight="26.0" prefWidth="300.0" fx:id="phoneNumber" >
+            <font><Font size="18.0"/></font></Label>
 
-      <TextField layoutX="142.0" layoutY="150.0" prefHeight="26.0" prefWidth="235.0" fx:id="firstNameField"
-                 visible="false" promptText="First name"/>
-      <TextField layoutX="142.0" layoutY="180.0" prefHeight="26.0" prefWidth="235.0" fx:id="lastNameField"
-                 visible="false" promptText="Last name"/>
-      <TextField layoutX="142.0" layoutY="210.0" prefHeight="26.0" prefWidth="235.0" fx:id="EmailField"
-                 visible="false" promptText="Email"/>
-      <TextField layoutX="142.0" layoutY="240.0" prefHeight="26.0" prefWidth="235.0" fx:id="phoneNumberField"
-                 visible="false" promptText="Phone number"/>
+      <TextField layoutX="142.0" layoutY="145.0" prefHeight="20.0" prefWidth="270.0" fx:id="firstNameField"
+                 visible="false" promptText="First name"> <font><Font size="15.0"/></font></TextField>
+      <TextField layoutX="142.0" layoutY="185.0" prefHeight="20.0" prefWidth="270.0" fx:id="lastNameField"
+                 visible="false" promptText="Last name"> <font><Font size="15.0"/></font></TextField>
+      <TextField layoutX="142.0" layoutY="225.0" prefHeight="20.0" prefWidth="270.0" fx:id="EmailField"
+                 visible="false" promptText="Email"> <font><Font size="15.0"/></font></TextField>
+      <TextField layoutX="142.0" layoutY="265.0" prefHeight="20.0" prefWidth="270.0" fx:id="phoneNumberField"
+                 visible="false" promptText="Phone number"> <font><Font size="15.0"/></font></TextField>
 
       <Button layoutX="142.0" layoutY="115.0" mnemonicParsing="false" text="Edit"
               onMouseClicked="#editButtonOnClick" fx:id="editButton" />
 
-      <Button layoutX="142.0" layoutY="275.0" mnemonicParsing="false" text="Cancel"
+      <Button layoutX="142.0" layoutY="305.0" mnemonicParsing="false" text="Cancel"
               onMouseClicked="#cancelButtonOnClick" fx:id="cancelButton" visible="false" />
-      <Button layoutX="358.0" layoutY="275.0" mnemonicParsing="false" text="Save changes"
+      <Button layoutX="358.0" layoutY="305.0" mnemonicParsing="false" text="Save changes"
               onMouseClicked="#updateButtonOnClick" fx:id="updateButton" visible="false" />
 
-      <Text layoutX="220" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" fx:id="notice" visible="false"/>
+      <Text layoutX="190" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" fx:id="notice" visible="false">
+          <font><Font size="18.0"/></font></Text>
     </children>
 </AnchorPane>
