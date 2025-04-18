@@ -12,6 +12,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
@@ -28,6 +29,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 public class mapPageController extends sceneLoaderController {
     @FXML public Canvas heatMap;
@@ -41,7 +45,7 @@ public class mapPageController extends sceneLoaderController {
     public static ArrayList<Event> calenderEvents = new ArrayList<Event>();
     public enum feedType {LIVE, PREDICTED}
     public static feedType feedState = feedType.LIVE;
-    public static LocalDate stored_date = java.time.LocalDate.now();
+    public static LocalDate stored_date = LocalDate.now();
 
     public AI_model model = new AI_model();
     // stores all vital information regarding a building's code, x/y location and classes (in that order)
@@ -258,7 +262,7 @@ public class mapPageController extends sceneLoaderController {
                 event_end = event_end.substring(0, event_end.indexOf(' '));
 
                 if (isWithinDates(event_start, event_end, stored_date.toString()) && feedState == feedType.PREDICTED
-                || isWithinDates(event_start, event_end, java.time.LocalDate.now().toString()) && feedState == feedType.LIVE) {
+                || isWithinDates(event_start, event_end, LocalDate.now().toString()) && feedState == feedType.LIVE) {
                     calenderEvents.add(newEvent);
                     // add a tally next to the event's corresponding building, makes it much easier to view event density later
                     findBuildingByLetter(newEvent.eventLocation.charAt(0)).eventCount.add(newEvent);
@@ -364,8 +368,65 @@ public class mapPageController extends sceneLoaderController {
     }
 
 
+    public void generateMouseoverPrompts() {
+        for (Building building : CampusBuildings) {
+            JFrame f = new JFrame("MouseListener");
+            f.setSize(600, 100);
+
+            JPanel p = new JPanel();
+            p.setLayout(new FlowLayout());
+
+            JLabel label1 = new JLabel("no event  ");
+            JLabel label2 = new JLabel("no event  ");
+            JLabel label3 = new JLabel("no event  ");
+
+            MouseListener m = new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    label3.setText("mouse clicked at point:"
+                            + e.getX() + " "
+                            + e.getY() + "mouse clicked :" + e.getClickCount());
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    label1.setText("mouse pressed at point:"
+                            + e.getX() + " " + e.getY());
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    label1.setText("mouse released at point:"
+                            + e.getX() + " " + e.getY());
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    label2.setText("mouse entered at point:"
+                            + e.getX() + " " + e.getY());
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    label2.setText("mouse exited through point:"
+                            + e.getX() + " " + e.getY());
+                }
+            };
+            f.addMouseListener(m);
+
+            p.add(label1);
+            p.add(label2);
+            p.add(label3);
+
+            f.add(p);
+            f.show();
+        }
+    }
+
+
     public void initialize() {
         try {
+            generateMouseoverPrompts();
             reloadHeatmap();
             model.initialiseAIModel();
         } catch (Exception e) {
