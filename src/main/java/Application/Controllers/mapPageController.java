@@ -26,6 +26,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class mapPageController extends sceneLoaderController {
     @FXML public Canvas heatMap;
@@ -43,8 +45,6 @@ public class mapPageController extends sceneLoaderController {
 
     public AI_model model = new AI_model();
     // stores all vital information regarding a building's code, x/y location and classes (in that order)
-    /// PLACEHOLDER DATA JUST SO THERE'S SOMETHING TO SHOW
-    // todo: WILL BE REPLACED ONCE "User_Signup_Data" IS POPULATED
     public static Building[] CampusBuildings = {
             new Building('P', 254, 100, new ArrayList<Event>()),
             new Building('S', 78, 164, new ArrayList<Event>()),
@@ -250,8 +250,7 @@ public class mapPageController extends sceneLoaderController {
                         resultSet.getString("EventEndDatetime"),
                         resultSet.getString("EventLocation"),
                         resultSet.getInt("EventAttendance"));
-                // todo: check date
-                //if LocalDate.now()
+                // checks if event timeframe is within current date for live mode (or target date for predicted mode)
                 String event_start = resultSet.getString("EventStartDatetime");
                 String event_end = resultSet.getString("EventEndDatetime");
 
@@ -281,14 +280,8 @@ public class mapPageController extends sceneLoaderController {
 
     public void sortRooms(ArrayList<Event> calender_events) {
         // responsible for simply sorting and rendering rooms
-        ArrayList<String> quiet_areas = new ArrayList<String>();
-        ArrayList<String> busy_areas = new ArrayList<String>();
-
-        // TODO: FIX THE BUG IN THIS LOOP WHERE IT DUPLICATES ALL LISTS
-        /// confirmed to be inside quiet_areas & busy_areas
-        /// they aren't clearing themselves properly. still don't know how to fix
-        // todo: the database also appears to not clean out logged evens after they happen
-        //  (e.g. view event on 19th, switch to 20th, event still present, haven't tested tho)
+        Set<String> quiet_areas = new HashSet<String>();
+        Set<String> busy_areas = new HashSet<String>();
 
         for (Building building : CampusBuildings) {
             if (building.eventCount.size() > 2) {
