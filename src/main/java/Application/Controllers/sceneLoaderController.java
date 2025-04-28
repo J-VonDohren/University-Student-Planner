@@ -10,8 +10,8 @@ import java.util.stream.Stream;
 
 public class sceneLoaderController extends Main {
     protected final UserSignupDAO userSignupDAO = DatabaseConnection.getUserSignupDAO();
+    protected final UserTimetableDAO userTimetableDAO = DatabaseConnection.getUserTimetableDAO();
 //    protected UserCollectedDAO userDAO; // uncomment when implemented
-//    protected TimetableDAO userDAO;
 
     protected boolean checkDuplicateStudentNumbers(String studentNumber) {
         String checkUnique = "SELECT count(1) FROM User_Signup_Data where StudentNumber = '" + studentNumber + "';";

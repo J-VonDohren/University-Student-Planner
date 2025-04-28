@@ -81,13 +81,17 @@
       </Text>
       </StackPane>
 
-      <Label layoutX="142.0" layoutY="150.0" prefHeight="26.0" prefWidth="300.0" fx:id="firstName">
+      <Label layoutX="142.0" layoutY="150.0" prefHeight="26.0" prefWidth="300.0" fx:id="firstName" onMouseClicked="#editButtonOnClick">
+          <cursor><Cursor fx:constant="HAND" /></cursor>
             <font><Font size="18.0"/></font></Label>
-      <Label layoutX="142.0" layoutY="180.0" prefHeight="26.0" prefWidth="300.0" fx:id="lastName">
+      <Label layoutX="142.0" layoutY="180.0" prefHeight="26.0" prefWidth="300.0" fx:id="lastName" onMouseClicked="#editButtonOnClick">
+          <cursor><Cursor fx:constant="HAND" /></cursor>
             <font><Font size="18.0"/></font></Label>
-      <Label layoutX="142.0" layoutY="210.0" prefHeight="26.0" prefWidth="300.0" fx:id="Email" >
+      <Label layoutX="142.0" layoutY="210.0" prefHeight="26.0" prefWidth="300.0" fx:id="Email" onMouseClicked="#editButtonOnClick">
+          <cursor><Cursor fx:constant="HAND" /></cursor>
             <font><Font size="18.0"/></font></Label>
-      <Label layoutX="142.0" layoutY="240.0" prefHeight="26.0" prefWidth="300.0" fx:id="phoneNumber" >
+      <Label layoutX="142.0" layoutY="240.0" prefHeight="26.0" prefWidth="300.0" fx:id="phoneNumber" onMouseClicked="#editButtonOnClick">
+          <cursor><Cursor fx:constant="HAND" /></cursor>
             <font><Font size="18.0"/></font></Label>
 
       <TextField layoutX="142.0" layoutY="145.0" prefHeight="20.0" prefWidth="270.0" fx:id="firstNameField"

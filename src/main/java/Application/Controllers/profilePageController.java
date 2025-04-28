@@ -39,7 +39,7 @@ public class profilePageController extends sceneLoaderController {
     private UserSignup userSignup;
 
     //making this a function so it can be reused in other pages
-    public void setProfileImage(Circle background, Text initials,UserSignup user){
+    public void setProfileImage(UserSignup user){
         //set profileImg placeholder
         //get a random seed from the userNumber so the color is different for each user
         Random random = new Random(Long.parseLong(user.getStudentNumber().replaceAll("[^0-9]","")));
@@ -74,7 +74,7 @@ public class profilePageController extends sceneLoaderController {
             Email.setText("Email: "+userSignup.getEmail());
             phoneNumber.setText("Phone number: "+userSignup.getPhoneNumber());
 
-            setProfileImage(profileBackGround,profileText,userSignup);
+            setProfileImage(userSignup);
         }catch(Exception e){
             System.out.println(e + "exception");
         }
@@ -167,7 +167,7 @@ public class profilePageController extends sceneLoaderController {
                 lastName.setText("Last Name: "+userSignup.getLastName());
                 Email.setText("Email: "+userSignup.getEmail());
                 phoneNumber.setText("Phone number: "+userSignup.getPhoneNumber());
-                setProfileImage(profileBackGround,profileText,userSignup);
+                setProfileImage(userSignup);
 
                 notice.setText("changes saved successfully.");
                 notice.setVisible(true);

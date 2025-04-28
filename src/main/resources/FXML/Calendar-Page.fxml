@@ -15,8 +15,26 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.control.ToggleGroup?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.calendarPageController">
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.control.ComboBox?>
+<?import java.lang.String?>
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.ScrollPane?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.calendarPageController"
+            fx:id="pane">
     <children>
         <MenuButton ellipsisString="" layoutX="535.0" layoutY="1.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="65.0" text="Options" wrapText="true">
             <items>
@@ -70,29 +88,116 @@
                 <Image url="@../Img/QUT-Logo.jpg" />
             </image>
         </ImageView>
-      <Button layoutX="237.0" layoutY="60.0" mnemonicParsing="false" text="Add Assignment" />
-      <MenuButton layoutX="427.0" layoutY="60.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="104.0" text="Add Event">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Add Study period" />
-          <MenuItem mnemonicParsing="false" text="Add Food Break" />
-            <MenuItem mnemonicParsing="false" text="Add Work schedule" />
-        </items>
-      </MenuButton>
-      <TextField layoutX="238.0" layoutY="26.0" prefHeight="25.0" prefWidth="294.0" promptText="Search for events" />
-      <TextArea layoutX="237.0" layoutY="91.0" prefHeight="257.0" prefWidth="294.0" text="Monthly style Calendar" />
-      <VBox layoutX="33.0" layoutY="60.0" prefHeight="204.0" prefWidth="178.0">
-         <children>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="134.0" prefWidth="178.0">
-               <children>
-                  <Text layoutX="46.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Upcoming Events">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <ListView fx:id="upcomingEventsList" layoutY="26.0" prefHeight="174.0" prefWidth="176.0" />
-               </children>
-            </AnchorPane>
-         </children>
-      </VBox>
+
+
+      <Button layoutX="463.0" layoutY="40.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="104.0" text="Add Event"
+              onMouseClicked="#showAddEventForm"/>
+
+      <StackPane layoutX="35" layoutY="45.0" fx:id="monthDecrementButton" onMouseClicked="#decrementMonth">
+          <Circle radius="12" fill="#003C72"/>
+          <Text translateY="-2" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="←">
+              <font><Font size="20.0" /></font>
+          </Text>
+      </StackPane>
+
+      <Text layoutX="70" layoutY="65.0" fill="black" strokeType="OUTSIDE" text="YEAR MONTH" fx:id="monthText">
+          <Font size="20.0" />
+      </Text>
+
+      <StackPane layoutX="165" layoutY="45.0" fx:id="monthIncrementButton" onMouseClicked="#incrementMonth">
+          <Circle radius="12" fill="#003C72"/>
+          <Text translateY="-2" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="→">
+              <font><Font size="20.0" /></font>
+          </Text>
+      </StackPane>
+
+
+
+        <GridPane layoutX="33.0" layoutY="75.0" minWidth="532.0" gridLinesVisible="true">
+            <columnConstraints>
+                <ColumnConstraints minWidth="76.0"/>
+                <ColumnConstraints minWidth="76.0"/>
+                <ColumnConstraints minWidth="76.0"/>
+                <ColumnConstraints minWidth="76.0"/>
+                <ColumnConstraints minWidth="76.0"/>
+                <ColumnConstraints minWidth="76.0"/>
+                <ColumnConstraints minWidth="76.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="20.0"/>
+            </rowConstraints>
+
+            <Text text="Monday" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Text text="Tuesday" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Text text="Wednesday" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+            <Text text="Thursday" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+            <Text text="Friday" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+            <Text text="Saturday" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+            <Text text="Sunday" GridPane.columnIndex="6" GridPane.rowIndex="0" />
+        </GridPane>
+
+    <ScrollPane layoutX="33.0" layoutY="95.0" fitToHeight="true" vbarPolicy="NEVER" maxHeight="260">
+      <GridPane layoutX="33.0" layoutY="75.0" minWidth="532.0" gridLinesVisible="true" fx:id="calendar">
+          <columnConstraints>
+              <ColumnConstraints minWidth="76.0"/>
+              <ColumnConstraints minWidth="76.0"/>
+              <ColumnConstraints minWidth="76.0"/>
+              <ColumnConstraints minWidth="76.0"/>
+              <ColumnConstraints minWidth="76.0"/>
+              <ColumnConstraints minWidth="76.0"/>
+              <ColumnConstraints minWidth="76.0"/>
+          </columnConstraints>
+      </GridPane>
+    </ScrollPane>
+
+
+        <Rectangle fill="rgba(0,0,0,0.8)" width="600" height="400" fx:id="background" visible="false"/>
+
+      <StackPane fx:id="form" layoutX="150" layoutY="20" visible="false">
+          <Rectangle fill="white" width="300" height="350" />
+          <Button minHeight="20" minWidth="100" translateY="-150" translateX="-90" text="Cancel" onMouseClicked="#closeForm"/>
+          <Text translateX="-90" translateY="-120" text="Event name:"/>
+          <TextField translateX="40" translateY="-120" maxHeight="20" maxWidth="150" promptText="Event name" fx:id="nameField" accessibleRoleDescription="event name"/>
+          <Text translateX="-90" translateY="-90" text="Event type:"/>
+          <ComboBox translateX="40" translateY="-90" maxHeight="20" maxWidth="150" fx:id="typeSelect" accessibleRoleDescription="event type"><items><FXCollections fx:factory="observableArrayList">
+                      <String fx:value="Study period"></String>
+                      <String fx:value="Work schedule"></String>
+                      <String fx:value="Food break"></String>
+                      <String fx:value="Assignment"></String>
+          </FXCollections></items></ComboBox>
+          <Text translateX="-90" translateY="-60" text="Start date:"/>
+          <DatePicker minHeight="20" minWidth="100" translateY="-60" translateX="40" fx:id="startDateSelect" accessibleRoleDescription="event start date"/>
+          <Text translateX="-90" translateY="-30" text="Start hour:"/>
+          <Spinner max="24" min="0" minHeight="20" maxWidth="50" translateY="-30" translateX="-35" fx:id="startHourSpinner" accessibleRoleDescription="event start hour"/>
+          <Text translateX="35" translateY="-30" text="Start minute:"/>
+          <Spinner max="60" min="0" minHeight="20" maxWidth="50" translateY="-30" translateX="95" fx:id="startMinuteSpinner" accessibleRoleDescription="event start minute"/>
+
+          <Text translateX="-90" translateY="0" text="End date:"/>
+          <DatePicker minHeight="20" minWidth="100" translateY="0" translateX="40" fx:id="endDateSelect" accessibleRoleDescription="event end date"/>
+          <Text translateX="-90" translateY="30" text="End hour:"/>
+          <Spinner max="24" min="0" minHeight="20" maxWidth="50" translateY="30" translateX="-35" fx:id="endHourSpinner" accessibleRoleDescription="event end hour"/>
+          <Text translateX="35" translateY="30" text="End minute:"/>
+          <Spinner max="60" min="0" minHeight="20" maxWidth="50" translateY="30" translateX="95" fx:id="endMinuteSpinner" accessibleRoleDescription="event end minute"/>
+
+          <Text translateX="-90" translateY="60" text="Event location"/>
+          <TextField translateX="40" translateY="60" maxHeight="20" maxWidth="170" promptText="Room code e.g.(S410)" fx:id="eventLocationField" accessibleRoleDescription="event location"/>
+
+          <Text translateX="-90" translateY="90" text="Attendance:" visible="false" fx:id="attendanceLabel"/>
+          <fx:define><ToggleGroup fx:id="attendance"/></fx:define>
+          <RadioButton translateX="-30" translateY="90" text="Yes" toggleGroup="$attendance" visible="false" fx:id="attendanceButtonYes" accessibleRoleDescription="attendance"/>
+          <RadioButton translateX="20" translateY="90" text="No" toggleGroup="$attendance" visible="false" fx:id="attendanceButtonNo" accessibleRoleDescription="attendance"/>
+
+          <Button minHeight="20" minWidth="100" translateY="150" text="Add event" onMouseClicked="#addEvent" visible="false" fx:id="addEventButton"/>
+
+          <Button minHeight="20" minWidth="100" translateY="150" translateX="-90" text="Update details" fx:id="editEventButton" visible="false"/>
+          <Button minHeight="20" minWidth="100" translateY="150" translateX="90" text="Delete event" textFill="red" fx:id="deleteEventButton" visible="false"/>
+
+          <Text translateY="120" text="sample" fill="red" visible="false" fx:id="formNotice"/>
+
+      </StackPane>
+
+
+
+
     </children>
 </AnchorPane>
