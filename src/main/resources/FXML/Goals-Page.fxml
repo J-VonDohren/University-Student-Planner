@@ -20,11 +20,11 @@
    <children>
       <MenuButton ellipsisString="" layoutX="535.0" layoutY="1.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="65.0" text="Options" wrapText="true">
          <items>
-            <MenuItem mnemonicParsing="false" text="View Profile" />
-            <MenuItem mnemonicParsing="false" text="Update Details" />
-            <MenuItem mnemonicParsing="false" text="Update Goals" />
-            <MenuItem mnemonicParsing="false" text="Log Out" />
-            <MenuItem mnemonicParsing="false" text="Close App" />
+            <MenuItem fx:id="viewProfileItem" text="View Profile" />
+            <MenuItem fx:id="updateDetailsItem" text="Update Details" />
+            <MenuItem fx:id="updateGoalsItem" text="Update Goals" />
+            <MenuItem fx:id="logoutItem" text="Log Out" />
+            <MenuItem fx:id="closeAppItem" text="Close App" />
          </items>
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />

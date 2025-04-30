@@ -54,6 +54,7 @@ public class profilePageController extends sceneLoaderController {
     }
 
     public void initialize(){
+        super.initialize();
         try {
             //get the info on the current user
             String profileInfoQuery = "SELECT * FROM User_Signup_Data where StudentNumber = ?";

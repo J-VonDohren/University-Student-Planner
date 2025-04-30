@@ -3,15 +3,40 @@ package Application.Controllers;
 
 import Application.Main;
 import Application.Database.*;
-
+import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.stream.Stream;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.MenuItem;
+
 
 public class sceneLoaderController extends Main {
     protected final UserSignupDAO userSignupDAO = DatabaseConnection.getUserSignupDAO();
     protected final UserTimetableDAO userTimetableDAO = DatabaseConnection.getUserTimetableDAO();
 //    protected UserCollectedDAO userDAO; // uncomment when implemented
+
+    @FXML protected MenuItem viewProfileItem;
+    @FXML protected MenuItem updateDetailsItem;
+    @FXML protected MenuItem updateGoalsItem;
+    @FXML protected MenuItem logoutItem;
+    @FXML protected MenuItem closeAppItem;
+
+    @FXML
+    public void initialize() {
+        try {
+            viewProfileItem.setOnAction(e -> viewProfile());
+            updateDetailsItem.setOnAction(e -> updateDetails());
+            updateGoalsItem.setOnAction(e -> updateGoals());
+            logoutItem.setOnAction(e -> logout());
+            closeAppItem.setOnAction(e -> closeApp());
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 
     protected boolean checkDuplicateStudentNumbers(String studentNumber) {
         String checkUnique = "SELECT count(1) FROM User_Signup_Data where StudentNumber = '" + studentNumber + "';";
@@ -137,6 +162,46 @@ public class sceneLoaderController extends Main {
         try{
             changeScene("/FXML/Profile-Page.fxml");
             closeActiveStage();
+        } catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void logout(){
+        try{
+            currentUserNumber = "";
+            switchToLoginPage();
+        } catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void closeApp() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit Confirmation");
+        alert.setHeaderText("Are you sure you want to close the app?");
+        alert.setContentText("Any unsaved changes will be lost.");
+
+        // Show dialog and wait for user response
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                Platform.exit();
+                System.exit(0);
+            }
+        });
+    }
+
+    public void updateGoals() {
+        System.out.println("Updating goals");
+    }
+
+    public void updateDetails() {
+        System.out.println("Updating details");
+    }
+
+    public void viewProfile() {
+        try{
+            switchToProfilePage();
         } catch (Exception e){
             System.out.println(e);
         }

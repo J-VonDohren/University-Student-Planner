@@ -95,6 +95,7 @@ public class mapPageController extends sceneLoaderController {
     }
 
     public void initialize() {
+        super.initialize();
         try {
             for (Building building : CampusBuildings) {
                 renderHeatmap(building);

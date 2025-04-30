@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
+import javafx.scene.control.MenuItem;
 import java.util.HashMap;
 
 
@@ -20,9 +21,11 @@ public class homePageController extends sceneLoaderController {
     @FXML Text MondayOvr, TuesdayOvr, WedOvr, ThursOvr, FriOvr;
     public HashMap<String,String> weekDayHashMap = new HashMap<String, String>();
 
+
     public AI_model model = new AI_model();
     @FXML
     public void initialize() {
+        super.initialize();
         try {
 
             weekDayHashMap.put("Monday", "");
