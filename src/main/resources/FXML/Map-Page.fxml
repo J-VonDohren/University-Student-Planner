@@ -94,7 +94,7 @@
                 </SplitPane>
             </children>
         </VBox>
-        <ImageView fitHeight="200.0" fitWidth="300.0" layoutX="243.0" layoutY="102.0" pickOnBounds="true">
+        <ImageView fitHeight="200.0" fitWidth="302.0" layoutX="243.0" layoutY="101.0" pickOnBounds="true">
             <image>
                 <Image url="@../Img/Campus-map.jpg" />
             </image>
