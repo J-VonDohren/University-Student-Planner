@@ -1,6 +1,7 @@
 package Application.Database;
-
+import Application.Controllers.sceneLoaderController;
 public class UserSignup {
+
     private String studentNumber;
     private String firstName;
     private String lastName;

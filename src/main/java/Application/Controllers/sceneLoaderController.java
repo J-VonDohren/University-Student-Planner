@@ -1,7 +1,7 @@
 package Application.Controllers;
 
 
-import Application.Main;
+import Application.*;
 import Application.Database.*;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -20,18 +20,26 @@ import java.util.stream.Stream;
 
 import Application.Main;
 import Application.StageController;
+import javafx.stage.Stage;
+
 public class sceneLoaderController{
     protected final UserSignupDAO userSignupDAO = DatabaseConnection.getUserSignupDAO();
     protected final UserTimetableDAO userTimetableDAO = DatabaseConnection.getUserTimetableDAO();
     protected final UserCollectedDataDAO userCollectedDataDAO = DatabaseConnection.getUserCollectedDataDAO();
     private Parent root;
-    public String currentUserNumber; //used to track the user currently logged in
+    public static String currentUserNumber; //used to track the user currently logged in
     protected StageController stageController = new StageController();
     @FXML protected MenuItem viewProfileItem;
     @FXML protected MenuItem updateDetailsItem;
     @FXML protected MenuItem updateGoalsItem;
     @FXML protected MenuItem logoutItem;
     @FXML protected MenuItem closeAppItem;
+
+    public sceneLoaderController(Stage stage) {stage = stageController.applicationStage;
+    }
+    public sceneLoaderController(){
+
+    }
 
     @FXML
     public void initialize() {
@@ -46,22 +54,25 @@ public class sceneLoaderController{
             System.out.println(e);
         }
     }
-    public void changeScene(String fxmlFilePath) throws IOException {
+
+    public void changeScene(FXMLLoader loader) throws IOException {
         try{
-            FXMLLoader fxmlFile = new FXMLLoader(getClass().getResource(fxmlFilePath));
-            root = fxmlFile.load();
+            if (loader.getLocation() == null) {
+                throw new IllegalStateException("no location set for current FXML loader");
+            }
+            root = loader.load();
 
             stageController.formatStage();
 
             stageController.applicationStage.setScene(new Scene(root));
             stageController.applicationStage.show();
-        } catch (Exception e) {
+        } catch (IllegalStateException e) {
             System.out.println(e);
         }
     }
     public void switchToLoginPage() throws Exception {
         try{
-            changeScene("/FXML/Login-Page.fxml");
+            changeScene(Main.getLoginPage());
             stageController.closeActiveStage();
         } catch (Exception e) {
             System.out.println(e);
@@ -70,7 +81,7 @@ public class sceneLoaderController{
 
     public void switchToRegisterPage() throws Exception {
         try{
-            changeScene("/FXML/Register-Page.fxml");
+            changeScene(Main.getRegisterPage());
             stageController.closeActiveStage();
         } catch (Exception e) {
             System.out.println(e);
@@ -79,7 +90,7 @@ public class sceneLoaderController{
 
     public void switchToHomePage() throws Exception {
         try{
-            changeScene("/FXML/Home-Page.fxml");
+            changeScene(Main.getHomePage());
             stageController.closeActiveStage();
         } catch (Exception e) {
             System.out.println(e);
@@ -88,7 +99,7 @@ public class sceneLoaderController{
 
     public void switchToMapPage() throws Exception {
         try{
-            changeScene("/FXML/Map-Page.fxml");
+            changeScene(Main.getMapPage());
             stageController.closeActiveStage();
         } catch (Exception e) {
             System.out.println(e);
@@ -97,7 +108,7 @@ public class sceneLoaderController{
 
     public void switchToGoalsPage() throws Exception {
         try{
-            changeScene("/FXML/Goals-Page.fxml");
+            changeScene(Main.getGoalsPage());
             stageController.closeActiveStage();
         } catch (Exception e) {
             System.out.println(e);
@@ -106,7 +117,7 @@ public class sceneLoaderController{
 
     public void switchToCalendarPage() throws Exception {
         try{
-            changeScene("/FXML/Calendar-Page.fxml");
+            changeScene(Main.getCalendarPage());
             stageController.closeActiveStage();
         } catch (Exception e) {
             System.out.println(e);
@@ -114,7 +125,7 @@ public class sceneLoaderController{
     }
     public void switchToProfilePage() throws Exception{
         try{
-            changeScene("/FXML/Profile-Page.fxml");
+            changeScene(Main.getProfilePage());
             stageController.closeActiveStage();
         } catch (Exception e){
             System.out.println(e);
