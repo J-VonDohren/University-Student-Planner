@@ -8,32 +8,32 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.mapPageController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.mapPageController">
     <children>
         <fx:include fx:id="optionList" source="../Components/OptionList.fxml"/>
         <ButtonBar layoutY="361.0" prefHeight="40.0" prefWidth="600.0">
             <buttons>
-                <Button mnemonicParsing="false" style="-fx-background-color: #87CEEB;" text="Home" textAlignment="CENTER" onMouseClicked="#switchToHomePage">
+                <Button mnemonicParsing="false" onMouseClicked="#switchToHomePage" style="-fx-background-color: #87CEEB;" text="Home" textAlignment="CENTER">
                     <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                     </cursor>
                 </Button>
-                <Button mnemonicParsing="false" style="-fx-background-color: #87CEEB;" text="Goals" onMouseClicked="#switchToGoalsPage">
+                <Button mnemonicParsing="false" onMouseClicked="#switchToGoalsPage" style="-fx-background-color: #87CEEB;" text="Goals">
                     <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                     </cursor>
                 </Button>
-                <Button mnemonicParsing="false" style="-fx-background-color: #003C72;" text="Map" textFill="WHITE" onMouseClicked="#switchToMapPage">
+                <Button mnemonicParsing="false" onMouseClicked="#switchToMapPage" style="-fx-background-color: #003C72;" text="Map" textFill="WHITE">
                     <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                     </cursor>
                 </Button>
-                <Button mnemonicParsing="false" style="-fx-background-color: #87CEEB;" text="Calendar" onMouseClicked="#switchToCalendarPage">
+                <Button mnemonicParsing="false" onMouseClicked="#switchToCalendarPage" style="-fx-background-color: #87CEEB;" text="Calendar">
                     <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                     </cursor>
                 </Button>
-                <Button mnemonicParsing="false" style="-fx-background-color: #87CEEB;" text="Profile" onMouseClicked="#switchToProfilePage">
+                <Button mnemonicParsing="false" onMouseClicked="#switchToProfilePage" style="-fx-background-color: #87CEEB;" text="Profile">
                     <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                     </cursor>
@@ -48,10 +48,9 @@
                 <Image url="@../Img/QUT-Logo.jpg" />
             </image>
         </ImageView>
-        <Button layoutX="243.0" layoutY="78.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="151.0" text="Live Feed" />
-        <Button layoutX="395.0" layoutY="78.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="151.0" text="Predicted Feed" />
-        <TextArea layoutX="243.0" layoutY="101.0" prefHeight="200.0" prefWidth="302.0" />
-        <Text layoutX="283.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heatmap results" wrappingWidth="223.70079040527344" />
+        <Button fx:id="liveFeedButton" layoutX="250.0" layoutY="124.0" mnemonicParsing="false" onMouseClicked="#openLiveFeed" prefHeight="26.0" prefWidth="151.0" text="Live Feed" />
+        <Button fx:id="predictedFeedButton" layoutX="401.0" layoutY="124.0" mnemonicParsing="false" onMouseClicked="#openPredictedFeed" prefHeight="26.0" prefWidth="151.0" text="Predicted Feed" />
+        <TextArea layoutX="250.0" layoutY="150.0" prefHeight="200.0" prefWidth="302.0" />
         <VBox layoutX="43.0" layoutY="20.0" prefHeight="330.0" prefWidth="178.0">
             <children>
                 <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="343.0" prefWidth="178.0">
@@ -80,11 +79,12 @@
                 </SplitPane>
             </children>
         </VBox>
-        <ImageView fitHeight="200.0" fitWidth="300.0" layoutX="243.0" layoutY="102.0" pickOnBounds="true">
+        <ImageView fitHeight="200.0" fitWidth="300.0" layoutX="251.0" layoutY="150.0" pickOnBounds="true">
             <image>
                 <Image url="@../Img/Campus-map.jpg" />
             </image>
         </ImageView>
-        <Canvas fx:id="heatMap" height="200.0" layoutX="243.0" layoutY="101.0" width="302.0" />
+        <Canvas fx:id="heatMap" height="200.0" layoutX="250.0" layoutY="150.0" width="302.0" />
+      <TextArea fx:id="AIMapSummary" layoutX="250.0" layoutY="20.0" prefHeight="77.0" prefWidth="269.0" />
     </children>
 </AnchorPane>
