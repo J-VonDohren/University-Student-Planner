@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
@@ -338,6 +339,7 @@ public class goalsPageController extends sceneLoaderController {
         String newEntriesAttendanceRateKPI = usersCurrentData.getString("AttendanceRate") != null ? usersCurrentData.getString("AttendanceRate") : "0";
         String newEntriesAttendanceGoal = usersCurrentData.getString("AttendanceRateGoal")!= null ? usersCurrentData.getString("AttendanceRateGoal") : "0";
         String newEntriesEnrolledUnits = usersCurrentData.getString("UnitsEnrolled") != null ? usersCurrentData.getString("UnitsEnrolled") : " ";
+
         for(int i = 0; i < validatedChanges.length; i++){
             if(i == 0 && validatedChanges[i] == true){
                 newEntriesHoursStudiedKPI = editHoursStudiedKPI.getText();
@@ -435,4 +437,5 @@ public class goalsPageController extends sceneLoaderController {
         model.promptAI(promptText);
         AIGeneratedGoalSuggestion.setText(model.promptAI(promptText));
     }
+
 }

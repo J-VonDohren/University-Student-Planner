@@ -57,7 +57,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage applicationStage) throws Exception {
-        sceneLoaderController.changeScene(Main.getLoginPage()); // loads the login page as the first scene
+        sceneLoaderController.changeScene(getLoginPage());
     }
 
     @Override

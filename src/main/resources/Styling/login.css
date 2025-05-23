@@ -1,0 +1,23 @@
+#loginTextField, #loginPasswordField {
+    -fx-pref-width: 100%;
+    -fx-max-width: Infinity;
+}
+
+.button {
+    -fx-pref-width: 100%;
+    -fx-max-width: Infinity;
+    -fx-background-color: #1976D2;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+}
+
+.label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #333;
+}
+
+#SecureLoginTitle {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+}
