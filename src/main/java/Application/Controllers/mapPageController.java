@@ -50,7 +50,8 @@ public class mapPageController extends sceneLoaderController {
     public static Building[] CampusBuildings = {
             new Building('P', 254, 100, new ArrayList<Event>()),
             new Building('S', 78, 164, new ArrayList<Event>()),
-            new Building('Z', 128, 166, new ArrayList<Event>())
+            new Building('Z', 128, 166, new ArrayList<Event>()),
+            new Building('V', 135, 95, new ArrayList<Event>())
     };
 
     public static Circle CirclePreset =
