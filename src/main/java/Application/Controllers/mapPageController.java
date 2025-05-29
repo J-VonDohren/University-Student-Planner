@@ -45,8 +45,6 @@ public class mapPageController extends sceneLoaderController {
 
     public AI_model model = new AI_model();
     // stores all vital information regarding a building's code, x/y location and classes (in that order)
-    /// PLACEHOLDER DATA JUST SO THERE'S SOMETHING TO SHOW
-    // todo: WILL BE REPLACED ONCE "User_Signup_Data" IS POPULATED
     public static Building[] CampusBuildings = {
             new Building('P', 254, 100, new ArrayList<Event>()),
             new Building('S', 78, 164, new ArrayList<Event>()),
@@ -253,8 +251,7 @@ public class mapPageController extends sceneLoaderController {
                         resultSet.getString("EventEndDatetime"),
                         resultSet.getString("EventLocation"),
                         resultSet.getInt("EventAttendance"));
-                // todo: check date
-                //if LocalDate.now()
+                // checks if event timeframe is within current date for live mode (or target date for predicted mode)
                 String event_start = resultSet.getString("EventStartDatetime");
                 String event_end = resultSet.getString("EventEndDatetime");
 
