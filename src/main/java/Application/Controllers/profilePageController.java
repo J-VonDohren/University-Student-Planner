@@ -25,10 +25,6 @@ import java.util.Random;
 import static java.util.Locale.filter;
 
 public class profilePageController extends sceneLoaderController {
-    @FXML private Label firstName;
-    @FXML private Label lastName;
-    @FXML private Label Email;
-    @FXML private Label phoneNumber;
     @FXML private TextField firstNameField;
     @FXML private TextField lastNameField;
     @FXML private TextField EmailField;
@@ -69,75 +65,63 @@ public class profilePageController extends sceneLoaderController {
         profilePlace.getChildren().add(profileText);
     }
 
-    public void initialize(){
+    public void initialize() {
         super.initialize();
         try {
-            //get the info on the current user
             String profileInfoQuery = "SELECT * FROM User_Signup_Data where StudentNumber = ?";
             PreparedStatement statement = userSignupDAO.getDBConnection().prepareStatement(profileInfoQuery);
-            statement.setString(1,currentUserNumber);
+            statement.setString(1, currentUserNumber);
             ResultSet resultSet = statement.executeQuery();
 
-            //make a UserSignup instance to use for this page
-            userSignup = new UserSignup(currentUserNumber
-                    ,resultSet.getString("FirstName")
-                    ,resultSet.getString("LastName")
-                    ,resultSet.getString("Email")
-                    ,resultSet.getString("PhoneNumber")
-                    ,resultSet.getString("LoginPassword"));
-            //set labels to user info
-            firstName.setText("First name: "+userSignup.getFirstName());
-            lastName.setText("Last Name: "+userSignup.getLastName());
-            Email.setText("Email: "+userSignup.getEmail());
-            phoneNumber.setText("Phone number: "+userSignup.getPhoneNumber());
+            userSignup = new UserSignup(
+                    currentUserNumber,
+                    resultSet.getString("FirstName"),
+                    resultSet.getString("LastName"),
+                    resultSet.getString("Email"),
+                    resultSet.getString("PhoneNumber"),
+                    resultSet.getString("LoginPassword")
+            );
 
-            setProfileImage(userSignup,55f);
-        }catch(Exception e){
-            System.out.println(e + "exception");
+            firstNameField.setText(userSignup.getFirstName());
+            lastNameField.setText(userSignup.getLastName());
+            EmailField.setText(userSignup.getEmail());
+            phoneNumberField.setText(userSignup.getPhoneNumber());
+
+            setProfileImage(userSignup, 55f);
+        } catch (Exception e) {
+            System.out.println(e + " exception");
         }
     }
 
-    public void editButtonOnClick(MouseEvent click) {
-        //hide labels and button
-        firstName.setVisible(false);
-        lastName.setVisible(false);
-        Email.setVisible(false);
-        phoneNumber.setVisible(false);
+
+    public void editButtonOnClick(MouseEvent event) {
+        firstNameField.setEditable(true);
+        lastNameField.setEditable(true);
+        EmailField.setEditable(true);
+        phoneNumberField.setEditable(true);
+
         editButton.setVisible(false);
-        //show elements for editing form
-        firstNameField.setVisible(true);
-        lastNameField.setVisible(true);
-        EmailField.setVisible(true);
-        phoneNumberField.setVisible(true);
-        cancelButton.setVisible(true);
         updateButton.setVisible(true);
-        //set fields to saved values when opening (done everytime so changes made before hitting cancel are forgotten)
+        cancelButton.setVisible(true);
+    }
+
+    public void cancelButtonOnClick(MouseEvent event) {
         firstNameField.setText(userSignup.getFirstName());
         lastNameField.setText(userSignup.getLastName());
         EmailField.setText(userSignup.getEmail());
         phoneNumberField.setText(userSignup.getPhoneNumber());
-    }
 
-    private  void hideForm(){
-        //show labels and button
-        firstName.setVisible(true);
-        lastName.setVisible(true);
-        Email.setVisible(true);
-        phoneNumber.setVisible(true);
-        editButton.setVisible(true);
-        //hide elements for editing form
-        firstNameField.setVisible(false);
-        lastNameField.setVisible(false);
-        EmailField.setVisible(false);
-        phoneNumberField.setVisible(false);
-        cancelButton.setVisible(false);
+        firstNameField.setEditable(false);
+        lastNameField.setEditable(false);
+        EmailField.setEditable(false);
+        phoneNumberField.setEditable(false);
+
         updateButton.setVisible(false);
+        cancelButton.setVisible(false);
+        editButton.setVisible(true);
         notice.setVisible(false);
     }
 
-    public void cancelButtonOnClick(MouseEvent click) {
-        hideForm();
-    }
 
     public Boolean validateChanges(){
         String firstName = firstNameField.getText();
@@ -176,7 +160,7 @@ public class profilePageController extends sceneLoaderController {
     }
 
     public void updateButtonOnClick() {
-        if (validateChanges()){
+        if (validateChanges()) {
             userSignup.setFirstName(firstNameField.getText());
             userSignup.setLastName(lastNameField.getText());
             userSignup.setEmail(EmailField.getText());
@@ -185,24 +169,25 @@ public class profilePageController extends sceneLoaderController {
             try {
                 userSignupDAO.updateUser(userSignup);
 
-                hideForm();
-                firstName.setText("First name: "+userSignup.getFirstName());
-                lastName.setText("Last Name: "+userSignup.getLastName());
-                Email.setText("Email: "+userSignup.getEmail());
-                phoneNumber.setText("Phone number: "+userSignup.getPhoneNumber());
-                setProfileImage(userSignup,55f);
+                // disable fields again
+                firstNameField.setEditable(false);
+                lastNameField.setEditable(false);
+                EmailField.setEditable(false);
+                phoneNumberField.setEditable(false);
 
-                notice.setText("changes saved successfully.");
+                updateButton.setVisible(false);
+                cancelButton.setVisible(false);
+                editButton.setVisible(true);
+
+                notice.setText("Changes saved successfully.");
                 notice.setVisible(true);
                 notice.setFill(Color.GREEN);
-            }catch (SQLException e) {
-                notice.setText("an error has occurred.");
+            } catch (SQLException e) {
+                notice.setText("An error occurred.");
                 notice.setVisible(true);
                 notice.setFill(Color.RED);
-                System.out.println("Update failed: "+e);
+                System.out.println("Update failed: " + e);
             }
         }
     }
-
-
 }

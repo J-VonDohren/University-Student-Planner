@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Application.Controllers.NavBarController"
+            prefHeight="400.0" prefWidth="600.0">
+    <ImageView fitHeight="40.0" fitWidth="60.0" layoutX="13.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@../Img/QUT-Logo.jpg" />
+        </image>
+    </ImageView>
+
+    <ButtonBar layoutX="62.5" layoutY="361.0" prefHeight="40.0" prefWidth="600.0">
+        <buttons>
+            <Button fx:id="homeButton" mnemonicParsing="false" onMouseClicked="#switchToHomePage" style="-fx-background-color: #003C72;" text="Home" textAlignment="CENTER" textFill="WHITE">
+                <cursor>
+                    <Cursor fx:constant="OPEN_HAND" />
+                </cursor>
+            </Button>
+            <Button fx:id="goalsButton" mnemonicParsing="false" onMouseClicked="#switchToGoalsPage" style="-fx-background-color: #87CEEB;" text="Goals">
+                <cursor>
+                    <Cursor fx:constant="OPEN_HAND" />
+                </cursor>
+            </Button>
+            <Button fx:id="mapButton" mnemonicParsing="false" onMouseClicked="#switchToMapPage" style="-fx-background-color: #87CEEB;" text="Map">
+                <cursor>
+                    <Cursor fx:constant="OPEN_HAND" />
+                </cursor>
+            </Button>
+            <Button fx:id="calendarButton" mnemonicParsing="false" onMouseClicked="#switchToCalendarPage" style="-fx-background-color: #87CEEB;" text="Calendar">
+                <cursor>
+                    <Cursor fx:constant="OPEN_HAND" />
+                </cursor>
+            </Button>
+            <Button fx:id="profileButton" mnemonicParsing="false" onMouseClicked="#switchToProfilePage" style="-fx-background-color: #87CEEB;" text="Profile">
+                <cursor>
+                    <Cursor fx:constant="OPEN_HAND" />
+                </cursor>
+            </Button>
+        </buttons>
+        <padding>
+            <Insets right="75.0" />
+        </padding>
+    </ButtonBar>
+</AnchorPane>

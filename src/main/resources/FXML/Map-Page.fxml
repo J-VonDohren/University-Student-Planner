@@ -10,44 +10,10 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.mapPageController">
     <children>
+        <fx:include fx:id="NavBar" source="../Components/NavBar.fxml"/>
         <fx:include fx:id="optionList" source="../Components/OptionList.fxml"/>
-        <ButtonBar layoutY="361.0" prefHeight="40.0" prefWidth="600.0">
-            <buttons>
-                <Button mnemonicParsing="false" onMouseClicked="#switchToHomePage" style="-fx-background-color: #87CEEB;" text="Home" textAlignment="CENTER">
-                    <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
-                    </cursor>
-                </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#switchToGoalsPage" style="-fx-background-color: #87CEEB;" text="Goals">
-                    <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
-                    </cursor>
-                </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#switchToMapPage" style="-fx-background-color: #003C72;" text="Map" textFill="WHITE">
-                    <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
-                    </cursor>
-                </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#switchToCalendarPage" style="-fx-background-color: #87CEEB;" text="Calendar">
-                    <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
-                    </cursor>
-                </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#switchToProfilePage" style="-fx-background-color: #87CEEB;" text="Profile">
-                    <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
-                    </cursor>
-                </Button>
-            </buttons>
-            <padding>
-                <Insets right="75.0" />
-            </padding>
-        </ButtonBar>
-        <ImageView fitHeight="40.0" fitWidth="60.0" layoutX="13.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../Img/QUT-Logo.jpg" />
-            </image>
-        </ImageView>
+
+
         <Button fx:id="liveFeedButton" layoutX="250.0" layoutY="124.0" mnemonicParsing="false" onMouseClicked="#openLiveFeed" prefHeight="26.0" prefWidth="151.0" text="Live Feed" />
         <Button fx:id="predictedFeedButton" layoutX="401.0" layoutY="124.0" mnemonicParsing="false" onMouseClicked="#openPredictedFeed" prefHeight="26.0" prefWidth="151.0" text="Predicted Feed" />
         <TextArea layoutX="250.0" layoutY="150.0" prefHeight="200.0" prefWidth="302.0" />
@@ -85,6 +51,12 @@
             </image>
         </ImageView>
         <Canvas fx:id="heatMap" height="200.0" layoutX="250.0" layoutY="150.0" width="302.0" />
-      <TextArea fx:id="AIMapSummary" layoutX="250.0" layoutY="20.0" prefHeight="77.0" prefWidth="269.0" />
+      <TextArea fx:id="AIMapSummary" editable="false" layoutX="250.0" layoutY="20.0" prefHeight="77.0" prefWidth="269.0" text="Summary loading..." wrapText="true" />
+      <HBox fx:id="dateContainer" layoutX="400.0" layoutY="151.0" prefHeight="26.0" prefWidth="151.0" visible="false">
+         <children>
+              <DatePicker fx:id="predictedDate" accessibleRoleDescription="event start date" minHeight="20" minWidth="100" prefHeight="26.0" prefWidth="151.0" />
+            <Button fx:id="dateButton" ellipsisString="Ok" mnemonicParsing="false" onMouseClicked="#confirmDate" prefHeight="26.0" prefWidth="41.0" text="Ok" />
+         </children>
+      </HBox>
     </children>
 </AnchorPane>

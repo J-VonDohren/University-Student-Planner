@@ -12,8 +12,8 @@ public class UserCollectedDataDAO extends BaseDAO{
     }
     private void createTable() {
         String sql = "CREATE TABLE IF NOT EXISTS User_Collected_Data (" +
-                "StudentNumber TEXT, " +
-                "dateModified TIME," +
+                "StudentNumber CHAR, " +
+                "dateModified VARCHAR," +
                 "GPA INT DEFAULT 0," +
                 "GPAGoal INT DEFAULT 0," +
                 "HoursStudied FLOAT DEFAULT 0," +
