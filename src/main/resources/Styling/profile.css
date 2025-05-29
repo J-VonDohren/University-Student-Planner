@@ -1,0 +1,18 @@
+/* Non-editable text fields (read-only) */
+.text-field:readonly{
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+    -fx-text-fill: #666666;
+    -fx-opacity: 1.0;
+    -fx-cursor: not-allowed;
+}
+
+/* Editable text fields */
+.text-field:editable {
+    -fx-background-color: white;
+    -fx-border-color: #2196F3;
+    -fx-border-width: 2px;
+    -fx-text-fill: #333333;
+    -fx-cursor: cursor;
+}

@@ -1,0 +1,41 @@
+#registerStudentNumber,
+#registerFirstName,
+#registerLastName,
+#registerEmail,
+#registerPassword,
+#confirmRegisterPassword {
+    -fx-pref-width: 100%;
+    -fx-max-width: Infinity;
+}
+
+#registerErrorMessagesText{
+    -fx-text-fill: red;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+/* Buttons (e.g., Create an account, Back) */
+.button {
+    -fx-pref-width: 100%;
+    -fx-max-width: Infinity;
+    -fx-background-color: #1976D2;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+}
+
+#SecureRegTitle {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+}
+
+.label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #333;
+}
+
+.text-field .password-field{
+    -fx-pref-width: 100%;
+    -fx-max-width: Infinity;
+}

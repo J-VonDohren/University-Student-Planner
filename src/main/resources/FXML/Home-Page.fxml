@@ -23,62 +23,22 @@
 <?import javafx.scene.control.ProgressBar?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.homePageController">
     <children>
+        <fx:include fx:id="NavBar" source="../Components/NavBar.fxml"/>
         <fx:include fx:id="optionList" source="../Components/OptionList.fxml"/>
-        <ButtonBar layoutY="361.0" prefHeight="40.0" prefWidth="600.0">
-            <buttons>
-                <Button mnemonicParsing="false" onMouseClicked="#switchToHomePage" style="-fx-background-color: #003C72;" text="Home" textAlignment="CENTER" textFill="WHITE">
-                    <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
-                    </cursor>
-                </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#switchToGoalsPage" style="-fx-background-color: #87CEEB;" text="Goals">
-                    <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
-                    </cursor>
-                </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#switchToMapPage" style="-fx-background-color: #87CEEB;" text="Map">
-                    <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
-                    </cursor>
-                </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#switchToCalendarPage" style="-fx-background-color: #87CEEB;" text="Calendar">
-                    <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
-                    </cursor>
-                </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#switchToProfilePage" style="-fx-background-color: #87CEEB;" text="Profile">
-                    <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
-                    </cursor>
-                </Button>
-            </buttons>
-            <padding>
-                <Insets right="75.0" />
-            </padding>
-        </ButtonBar>
-        <ImageView fitHeight="40.0" fitWidth="60.0" layoutX="13.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../Img/QUT-Logo.jpg" />
-            </image>
-        </ImageView>
-<!--        <ProgressIndicator fx:id="GPAProgress" layoutX="407.0" layoutY="53.0" progress="0.0" />-->
-<!--        <ProgressIndicator fx:id="StudyHourProgress" layoutX="325.0" layoutY="53.0" progress="0.0" />-->
-<!--        <ProgressIndicator fx:id="AttendanceProgress" layoutX="481.0" layoutY="53.0" progress="0.0" />-->
-<!--        <Text layoutX="312.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hours Studied" textAlignment="CENTER" wrappingWidth="51.439453125" />-->
-<!--        <Text layoutX="394.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GPA" textAlignment="CENTER" wrappingWidth="51.439453125" />-->
-<!--        <Text layoutX="460.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attendance" textAlignment="CENTER" wrappingWidth="68.23944091796875" />-->
+
+
         <!-- ─── BEGIN DASHBOARD SUMMARY ─── -->
-        <AnchorPane layoutX="310.0" layoutY="17.0" prefWidth="260.0" prefHeight="180.0">
+        <AnchorPane layoutX="420.0" layoutY="17.0" prefWidth="300.0" prefHeight="180.0">
 
             <!-- Top-Left: Hours Studied -->
-            <VBox layoutX="0.0"   layoutY="0.0" alignment="CENTER" spacing="1">
+            <VBox alignment="CENTER" spacing="1">
                 <Label text="Hours Studied"/>
                 <ProgressBar fx:id="StudyHourProgress" prefWidth="100.0"/>
                 <Label fx:id="studyLabel" text="0/20h"/>
             </VBox>
 
             <!-- Top-Right: GPA -->
-            <VBox layoutX="120.0" layoutY="0.0" alignment="CENTER" spacing="1">
+            <VBox layoutX="120.0" alignment="CENTER" spacing="1">
                 <Label text="GPA"/>
                 <ProgressBar fx:id="GPAProgress" prefWidth="100.0"/>
                 <Label fx:id="gpaLabel" text="0.00/4.00"/>
@@ -93,7 +53,8 @@
 
         </AnchorPane>
         <!-- ─── END DASHBOARD SUMMARY ─── -->
-        <SplitPane dividerPositions="0.2599206349206349" layoutX="12.0" layoutY="138.0" orientation="VERTICAL" prefHeight="127.0" prefWidth="102.0">
+
+        <SplitPane dividerPositions="0.2599206349206349" layoutX="15.0" layoutY="138.0" orientation="VERTICAL" prefHeight="127.0" prefWidth="115.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                     <children>
@@ -107,7 +68,7 @@
                 </AnchorPane>
             </items>
         </SplitPane>
-        <SplitPane dividerPositions="0.2599206349206349" layoutX="133.0" layoutY="138.0" orientation="VERTICAL" prefHeight="127.0" prefWidth="102.0">
+        <SplitPane dividerPositions="0.2599206349206349" layoutX="160" layoutY="138.0" orientation="VERTICAL" prefHeight="127.0" prefWidth="115.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                     <children>
@@ -121,7 +82,7 @@
                 </AnchorPane>
             </items>
         </SplitPane>
-        <SplitPane dividerPositions="0.2599206349206349" layoutX="255.0" layoutY="140.0" orientation="VERTICAL" prefHeight="127.0" prefWidth="102.0">
+        <SplitPane dividerPositions="0.2599206349206349" layoutX="305" layoutY="140.0" orientation="VERTICAL" prefHeight="127.0" prefWidth="115.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                     <children>
@@ -135,7 +96,7 @@
                 </AnchorPane>
             </items>
         </SplitPane>
-        <SplitPane dividerPositions="0.2599206349206349" layoutX="375.0" layoutY="139.0" orientation="VERTICAL" prefHeight="127.0" prefWidth="102.0">
+        <SplitPane dividerPositions="0.2599206349206349" layoutX="450" layoutY="139.0" orientation="VERTICAL" prefHeight="127.0" prefWidth="115.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                     <children>
@@ -149,7 +110,7 @@
                 </AnchorPane>
             </items>
         </SplitPane>
-        <SplitPane dividerPositions="0.2599206349206349" layoutX="494.0" layoutY="139.0" orientation="VERTICAL" prefHeight="127.0" prefWidth="102.0">
+        <SplitPane dividerPositions="0.2599206349206349" layoutX="595.0" layoutY="139.0" orientation="VERTICAL" prefHeight="127.0" prefWidth="115.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="110.0" prefWidth="160.0">
                     <children>
@@ -164,11 +125,12 @@
             </items>
         </SplitPane>
 
-        <Text fx:id="motivationalAI" layoutX="81.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0"
+        <Text fx:id="motivationalAI" layoutX="130.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0"
               text="Quote loading"
               wrappingWidth="464.8753662109375" style="-fx-font-size: 18px;"
+              textAlignment="CENTER"
         />
-        <TextArea fx:id="weeklyOverviewAI" layoutX="4.0" layoutY="2.0" prefHeight="127.0" prefWidth="294.0" text="Overview loading" wrapText="true">
+        <TextArea fx:id="weeklyOverviewAI" layoutX="4.0" layoutY="2.0" prefHeight="127.0" prefWidth="400.0" text="Overview loading" wrapText="true">
             <font>
                 <Font size="10.0" />
             </font>

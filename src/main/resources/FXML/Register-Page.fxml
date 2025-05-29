@@ -7,51 +7,115 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.registerPageController">
-   <children>
-      <AnchorPane prefHeight="400.0" prefWidth="244.0" style="-fx-background-color: #003C72;">
-         <children>
-            <ImageView fitHeight="244.0" fitWidth="258.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Img/QUT-Logo.jpg" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="244.0" prefHeight="400.0" prefWidth="356.0">
-         <children>
-            <Button layoutX="2.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#switchToLoginPage" text="← Back">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <Text layoutX="99.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register" wrappingWidth="157.09375">
-               <font>
-                  <Font name="System Bold Italic" size="40.0" />
-               </font>
+<GridPane fx:id="gridPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../Styling/register.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controllers.registerPageController">
+
+   <columnConstraints>
+      <ColumnConstraints percentWidth="33.0" />
+      <ColumnConstraints percentWidth="67.0" />
+   </columnConstraints>
+
+   <rowConstraints>
+      <RowConstraints percentHeight="100.0" />
+   </rowConstraints>
+
+   <!-- Left Branding Panel -->
+   <AnchorPane fx:id="bannerAnchor" style="-fx-background-color: #003C72;" GridPane.columnIndex="0">
+      <children>
+         <ImageView fitHeight="400.0" fitWidth="244.0" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <image>
+               <Image url="@../Img/QUT-Logo.jpg" />
+            </image>
+         </ImageView>
+         <Text fill="WHITE" text="Student Planner" wrappingWidth="168.0" AnchorPane.leftAnchor="51.0" AnchorPane.topAnchor="210.0">
+            <font>
+               <Font name="System Bold Italic" size="40.0" />
+            </font>
+         </Text>
+      </children>
+   </AnchorPane>
+
+   <!-- Right Register Panel -->
+   <AnchorPane fx:id="SecureRegAnchor" GridPane.columnIndex="1">
+
+            <Label fx:id="registerErrorMessagesText" layoutX="40.0" layoutY="31.0" prefHeight="25.0" prefWidth="415.0"
+                   textFill="red" wrapText="true" visible="false"/>
+
+            <VBox layoutX="40.0" layoutY="56.0" prefWidth="415.0" spacing="10.0">
+
+            <Text fx:id="SecureRegTitle" text="Sign up and account">
+            <font>
+               <Font name="System Bold Italic" size="36.0" />
+            </font>
             </Text>
-            <TextField layoutX="157.0" layoutY="68.0" promptText="Student Number" fx:id="registerStudentNumber"/>
-            <TextField layoutX="157.0" layoutY="95.0" promptText="First Name" fx:id="registerFirstName"/>
-            <TextField layoutX="157.0" layoutY="132.0" promptText="Last Name" fx:id="registerLastName"/>
-            <TextField layoutX="157.0" layoutY="169.0" promptText="Email Address" fx:id="registerEmail"/>
-            <PasswordField layoutX="157.0" layoutY="206.0" promptText="Password" fx:id="registerPassword"/>
-            <PasswordField layoutX="157.0" layoutY="233.0" promptText="Confirm Password" fx:id="confirmRegisterPassword"/>
-            <Label fx:id="registerErrorMessagesText" text=""/>
-            <Text layoutX="47.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" />
-            <Text layoutX="48.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" />
-            <Text layoutX="51.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email Address" />
-            <Text layoutX="51.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
-            <Text layoutX="51.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password" />
-            <Button fx:id="creatAccBtn" layoutX="49.0" layoutY="306.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="257.0" text="Create an account!" onMouseClicked="#registerUser"/>
-         </children>
-      </AnchorPane>
-      <Text fill="WHITE" layoutX="38.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Planner" wrappingWidth="168.09375">
-         <font>
-            <Font name="System Bold Italic" size="40.0" />
-         </font>
-      </Text>
-   </children>
-</AnchorPane>
+
+            <GridPane alignment="CENTER" hgap="10" vgap="10">
+
+               <columnConstraints>
+                  <ColumnConstraints percentWidth="50"/>
+                  <ColumnConstraints percentWidth="50"/>
+               </columnConstraints>
+
+            <VBox>
+               <children>
+                     <Text text="Student Number" />
+                     <TextField fx:id="registerStudentNumber" maxWidth="Infinity" promptText="Student Number" />
+               </children>
+            </VBox>
+
+            <VBox GridPane.columnIndex="1">
+               <children>
+                     <Text text="Email Address" />
+      
+                     <TextField fx:id="registerEmail" maxWidth="Infinity" promptText="Email Address" />
+               </children>
+            </VBox>
+
+            <VBox GridPane.columnIndex="0" GridPane.rowIndex="1">
+               <children>
+                     <Text text="First Name" />
+                     <TextField fx:id="registerFirstName" maxWidth="Infinity" promptText="First Name" />
+               </children>
+            </VBox>
+
+            <VBox GridPane.rowIndex="1" GridPane.columnIndex="1">
+               <children>
+                     <Text text="Last Name" />
+      
+                     <TextField fx:id="registerLastName" maxWidth="Infinity" promptText="Last Name" />
+               </children>
+            </VBox>
+
+            <VBox GridPane.rowIndex="2">
+               <children>
+                     <Text text="Password" />
+                     <PasswordField fx:id="registerPassword" maxWidth="Infinity" promptText="Password" />
+               </children>
+            </VBox>
+
+            <VBox GridPane.columnIndex="1" GridPane.rowIndex="2" >
+               <children>
+                     <Text text="Confirm Password" />
+                     <PasswordField fx:id="confirmRegisterPassword" maxWidth="Infinity" promptText="Confirm Password" />
+               </children>
+            </VBox>
+
+            </GridPane>
+      
+            <Button fx:id="creatAccBtn" layoutX="49.0" layoutY="306.0" mnemonicParsing="false" onMouseClicked="#registerUser" prefHeight="25.0" prefWidth="415.0" styleClass="button" text="Create an account!" />
+   
+            <Button mnemonicParsing="false" onMouseClicked="#switchToLoginPage" text="← Back">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Button>
+
+            </VBox>
+   </AnchorPane>
+</GridPane>

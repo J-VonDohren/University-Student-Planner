@@ -11,7 +11,7 @@
             text="Options"
             prefWidth="65.0"
             prefHeight="26.0"
-            layoutX="535.0"
+            layoutX="660.0"
             layoutY="1.0"
             ellipsisString=""
             wrapText="true">
