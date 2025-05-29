@@ -26,6 +26,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class mapPageController extends sceneLoaderController {
     @FXML public Canvas heatMap;
@@ -48,7 +50,8 @@ public class mapPageController extends sceneLoaderController {
     public static Building[] CampusBuildings = {
             new Building('P', 254, 100, new ArrayList<Event>()),
             new Building('S', 78, 164, new ArrayList<Event>()),
-            new Building('Z', 128, 166, new ArrayList<Event>())
+            new Building('Z', 128, 166, new ArrayList<Event>()),
+            new Building('V', 135, 95, new ArrayList<Event>())
     };
 
     public static Circle CirclePreset =
@@ -161,7 +164,7 @@ public class mapPageController extends sceneLoaderController {
         // for wittle bubba gemini that can't chew it's fooood right awwww boo hoo
 
         /// yes, I'm unreasonably mad at this lol, and no I don't want to talk about it.
-        public String pureeEventData() {
+        public String pureEventData() {
             ArrayList<String> input_list = new ArrayList<>();
 
             input_list.add(getEventID().toString());
@@ -281,8 +284,8 @@ public class mapPageController extends sceneLoaderController {
 
     public void sortRooms(ArrayList<Event> calender_events) {
         // responsible for simply sorting and rendering rooms
-        ArrayList<String> quiet_areas = new ArrayList<String>();
-        ArrayList<String> busy_areas = new ArrayList<String>();
+        Set<String> quiet_areas = new HashSet<String>();
+        Set<String> busy_areas = new HashSet<String>();
 
         // TODO: FIX THE BUG IN THIS LOOP WHERE IT DUPLICATES ALL LISTS
         /// confirmed to be inside quiet_areas & busy_areas
@@ -324,6 +327,8 @@ public class mapPageController extends sceneLoaderController {
     }
 
     public void confirmDate() {
+        quietLocationList.getItems().clear();
+        busyLocationList.getItems().clear();
         stored_date = predictedDate.getValue();
         dateContainer.setVisible(false);
         reloadHeatmap();
@@ -331,11 +336,11 @@ public class mapPageController extends sceneLoaderController {
 
 
     public void generateAIData(ArrayList<Event> event_data) {
-        // prepare big bubba's pureed applesauce, convert all calender events into a readable string list of event details.
+        // prepare big bubba's pured applesauce, convert all calendar events into a readable string list of event details.
         // need to parse in context, giving it a template of what each value means
         String input_data = "";
         for (Event event : calenderEvents)
-            input_data += input_data + event.pureeEventData() + ". ";
+            input_data += input_data + event.pureEventData() + ". ";
         String promptText = "Can you generate a summary of current activities including how clustered together the events are and their frequency given the following heatmap information for a university campus:" + input_data + " with a text limit of 200 characters including spaces and excluding any special characters." +
                 "You are printing an informational readout for a user. Please do not talk about any backend details or ask for further information. The data you have given is sufficent for their needs." +
                 "The formatting for each event (stored inside the input_data as nested lists) is as follows: " +
