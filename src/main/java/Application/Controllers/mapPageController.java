@@ -2,6 +2,7 @@ package Application.Controllers;
 
 import Application.AI_model;
 import Application.Database.UserTimetableDAO;
+import Application.StageController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 
 import java.io.Console;
 import java.sql.PreparedStatement;
@@ -193,10 +195,6 @@ public class mapPageController extends sceneLoaderController {
             // lookup letterID inside event from calender_events
             Building building = findBuildingByLetter(calender_events.get(i).eventLocation.charAt(0));
             drawCircle(building, heatMap.getGraphicsContext2D(), i, calender_events.get(i)); //todo: REPLACE WITH IT'S POSITION IN THE ORDERED CALENDER EVENTS SET
-            System.out.println("6 6 6");
-            System.out.println(building);
-            System.out.println(calender_events.get(i));
-            System.out.println("9 9 9");
         }
     }
 
@@ -379,17 +377,16 @@ public class mapPageController extends sceneLoaderController {
 
     public void generateMouseoverPrompts() {
         for (Building building : CampusBuildings) {
-            JFrame f = new JFrame("MouseListener");
-            f.setSize(600, 100);
+            Stage stage = stageController.getApplicationStage();
+            JFrame frame = new JFrame("MouseListener");
+            frame.setSize(CirclePreset.circleWidth, CirclePreset.circleWidth);
+            frame.setLocation(building.xPos - (CirclePreset.circleWidth / 2), building.yPos - (CirclePreset.circleWidth / 2));
 
-            JPanel p = new JPanel();
-            p.setLayout(new FlowLayout());
+            JLabel label1 = new JLabel(building.letterID + " Block");
+            JLabel label2 = new JLabel(building.xPos + "x, " + building.yPos + "y");
+            JLabel label3 = new JLabel(building.eventCount + " events inside.");
 
-            JLabel label1 = new JLabel("no event  ");
-            JLabel label2 = new JLabel("no event  ");
-            JLabel label3 = new JLabel("no event  ");
-
-            MouseListener m = new MouseListener() {
+            MouseListener mouse = new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     label3.setText("mouse clicked at point:"
@@ -421,14 +418,15 @@ public class mapPageController extends sceneLoaderController {
                             + e.getX() + " " + e.getY());
                 }
             };
-            f.addMouseListener(m);
+            frame.addMouseListener(mouse);
 
-            p.add(label1);
-            p.add(label2);
-            p.add(label3);
+            //todo: replace these with functional versions
+            ///stage.add(label1);
+            ///stage.add(label2);
+            ///stage.add(label3);
 
-            f.add(p);
-            f.show();
+            ///f.add(stage);
+            ///f.show();
         }
     }
 
