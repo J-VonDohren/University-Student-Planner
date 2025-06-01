@@ -59,7 +59,7 @@ class MapPageControllerTest {
         String today = "2025-04-06";
         // checking that the method can handle past dates
         assertFalse(mapPageController.isWithinDates(end_time, start_time, today));
-        // opposite case
+        // opposite cases
         assertFalse(mapPageController.isWithinDates(today, end_time, start_time));
         // checking that the method can handle future dates
         assertFalse(mapPageController.isWithinDates(end_time, start_time, today));
