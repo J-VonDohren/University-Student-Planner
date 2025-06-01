@@ -11,7 +11,7 @@ class MapPageControllerTest {
     void renderHeatmap_Storage_Test() {
         // checking that the building class can successfully store and retrieve its own values
         mapPageController.Event event = new mapPageController.Event(1, "event", "type",
-                "2025/4/4", "2025/4/4", "S401", 0);
+                "2025-04-04", "2025-04-05", "S401", 0);
         mapPageController.Building building = new mapPageController.Building('A', 100, 200, new ArrayList<mapPageController.Event>((Collection<? extends mapPageController.Event>) event));
         assertEquals('A', building.getBlockLetter());
         assertEquals(100, building.getXPos());
@@ -22,7 +22,7 @@ class MapPageControllerTest {
     void renderHeatmap_XPosInRange_Test() {
         // ensuring xPos does not try to place buildings outside the borders of the ImageView container
         mapPageController.Event event = new mapPageController.Event(1, "event", "type",
-                "2025/4/4", "2025/4/4", "S401", 0);
+                "2025-04-04", "2025-04-05", "S401", 0);
         mapPageController.Building building = new mapPageController.Building('A', 100, 200, new ArrayList<mapPageController.Event>((Collection<? extends mapPageController.Event>) event));
         assertTrue(building.getYPos() >= -300);
         assertTrue(building.getYPos() <= 300);
@@ -32,7 +32,7 @@ class MapPageControllerTest {
     void renderHeatmap_YPosInRange_Test() {
         // ensuring yPos does not try to place buildings outside the borders of the ImageView container
         mapPageController.Event event = new mapPageController.Event(1, "event", "type",
-                "2025/4/4", "2025/4/4", "S401", 0);
+                "2025-04-05", "2025-04-05", "S401", 0);
         mapPageController.Building building = new mapPageController.Building('A', 100, 200, new ArrayList<mapPageController.Event>((Collection<? extends mapPageController.Event>) event));
         assertTrue(building.getYPos() >= -200);
         assertTrue(building.getYPos() <= 200);
@@ -52,9 +52,9 @@ class MapPageControllerTest {
     @Test
     void isWithinDates_Past_Test() {
         // checking that the building class can successfully store and retrieve its own values
-        String start_time = "2025-4-4";
-        String end_time = "2025-4-5";
-        String today = "2025-4-6";
+        String start_time = "2025-04-04";
+        String end_time = "2025-04-05";
+        String today = "2025-04-06";
         // checking that the method can handle past dates
         assertTrue(mapPageController.isWithinDates(start_time, end_time, today));
         // opposite case
