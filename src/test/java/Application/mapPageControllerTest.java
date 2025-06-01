@@ -52,9 +52,9 @@ class MapPageControllerTest {
     @Test
     void isWithinDates_Past_Test() {
         // checking that the building class can successfully store and retrieve its own values
-        String start_time = "2025/4/4";
-        String end_time = "2025/5/4";
-        String today = "2025/6/4";
+        String start_time = "2025-4-4";
+        String end_time = "2025-4-5";
+        String today = "2025-4-6";
         // checking that the method can handle past dates
         assertTrue(mapPageController.isWithinDates(start_time, end_time, today));
         // opposite case
