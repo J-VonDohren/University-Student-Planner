@@ -1,6 +1,9 @@
 import Application.Controllers.mapPageController;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MapPageControllerTest {
@@ -8,7 +11,9 @@ class MapPageControllerTest {
     @Test
     void renderHeatmap_Storage_Test() {
         // checking that the building class can successfully store and retrieve its own values
-        mapPageController.Building building = new mapPageController.Building('A', 100, 200);
+        mapPageController.Event event = new mapPageController.Event(1, "event", "type",
+                "2025-04-04", "2025-04-05", "S401", 0);
+        mapPageController.Building building = new mapPageController.Building('A', 100, 200, new ArrayList<mapPageController.Event>((Collection<? extends mapPageController.Event>) event));
         assertEquals('A', building.getBlockLetter());
         assertEquals(100, building.getXPos());
         assertEquals(200, building.getYPos());
@@ -17,7 +22,9 @@ class MapPageControllerTest {
     @Test
     void renderHeatmap_XPosInRange_Test() {
         // ensuring xPos does not try to place buildings outside the borders of the ImageView container
-        mapPageController.Building building = new mapPageController.Building('A', 100, 200, new String[]{"GP_300"});
+        mapPageController.Event event = new mapPageController.Event(1, "event", "type",
+                "2025-04-04", "2025-04-05", "S401", 0);
+        mapPageController.Building building = new mapPageController.Building('A', 100, 200, new ArrayList<mapPageController.Event>((Collection<? extends mapPageController.Event>) event));
         assertTrue(building.getYPos() >= -300);
         assertTrue(building.getYPos() <= 300);
     }
@@ -25,7 +32,9 @@ class MapPageControllerTest {
     @Test
     void renderHeatmap_YPosInRange_Test() {
         // ensuring yPos does not try to place buildings outside the borders of the ImageView container
-        mapPageController.Building building = new mapPageController.Building('A', 100, 200, new String[]{"GP_300"});
+        mapPageController.Event event = new mapPageController.Event(1, "event", "type",
+                "2025-04-05", "2025-04-05", "S401", 0);
+        mapPageController.Building building = new mapPageController.Building('A', 100, 200, new ArrayList<mapPageController.Event>((Collection<? extends mapPageController.Event>) event));
         assertTrue(building.getYPos() >= -200);
         assertTrue(building.getYPos() <= 200);
     }
@@ -42,12 +51,21 @@ class MapPageControllerTest {
         assertEquals("0x66009980", color_3.toString()); // blue_hue
     }
 
-    /*
     @Test
-    void sortRoomsTest() {
-        // todo - create this test case once the sorting method is improved
+    void isWithinDates_Past_Test() {
+        // checking that the building class can successfully store and retrieve its own values
+        String start_time = "2025-04-04";
+        String end_time = "2025-04-05";
+        String today = "2025-04-06";
+        // checking that the method can handle past dates
+        assertFalse(mapPageController.isWithinDates(end_time, start_time, today));
+        // opposite cases
+        assertFalse(mapPageController.isWithinDates(today, end_time, start_time));
+        // checking that the method can handle future dates
+        assertFalse(mapPageController.isWithinDates(end_time, start_time, today));
+        // opposite case
+        assertFalse(mapPageController.isWithinDates(today, end_time, start_time));
     }
-    */
 
     @Test
     void circleClass_Width_Test() {
