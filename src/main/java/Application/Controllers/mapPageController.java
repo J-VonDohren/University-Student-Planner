@@ -168,7 +168,7 @@ public class mapPageController extends sceneLoaderController {
         // for wittle bubba gemini that can't chew it's fooood right awwww boo hoo
 
         /// yes, I'm unreasonably mad at this lol, and no I don't want to talk about it.
-        public String pureEventData() {
+        public String pureeEventData() {
             ArrayList<String> input_list = new ArrayList<>();
 
             input_list.add(getEventID().toString());
@@ -194,16 +194,16 @@ public class mapPageController extends sceneLoaderController {
 
             // lookup letterID inside event from calender_events
             Building building = findBuildingByLetter(calender_events.get(i).eventLocation.charAt(0));
-            drawCircle(building, heatMap.getGraphicsContext2D(), i, calender_events.get(i)); //todo: REPLACE WITH IT'S POSITION IN THE ORDERED CALENDER EVENTS SET
+            drawCircle(building, heatMap.getGraphicsContext2D(), calender_events.get(i));
         }
     }
 
 
-    public void drawCircle(Building building, GraphicsContext graphics, int room_count, Event event) {
+    public void drawCircle(Building building, GraphicsContext graphics, Event event) {
         // set draw color to 'calculateHeat's output
-        graphics.setFill(calculateHeat(room_count, CirclePreset));
+        graphics.setFill(calculateHeat(building.eventCount.size(), CirclePreset));
         // 30 is the intial circle size, chosen due to it being roughly the size of a building
-        float circle_width = CirclePreset.circleWidth + (CirclePreset.circleStepValue * room_count);
+        float circle_width = CirclePreset.circleWidth + (CirclePreset.circleStepValue * building.eventCount.size());
 
         // removing half of the circle width from the coords is to compensate for the offset of the circle being in the top right corner (thanks javafx)
         graphics.fillOval(building.xPos - (circle_width / 2), building.yPos - (circle_width / 2), circle_width, circle_width); // first pair edits the x/y coords while the second edits the x/y size
@@ -225,18 +225,16 @@ public class mapPageController extends sceneLoaderController {
     }
 
 
-    public static Color calculateHeat(int room_number, Circle circleTemplate) {
+    public static Color calculateHeat(int event_count, Circle circleTemplate) {
         // The values range from 0 to 255 to encompass the full RGB scale of color.
 
-        int heat_hue_value = Math.clamp(room_number * circleTemplate.hueStepValue, 0, 255);
-        System.out.println(heat_hue_value);
+        int heat_hue_value = Math.clamp(event_count * circleTemplate.hueStepValue, 0, 255);
         // The heat hue value works as an inverse relationship with both red and blue hues.
         // The deeper the red, the less the blue and vice versa. Initally starts with max blue and zero red
         return (Color.rgb(Math.abs(heat_hue_value - 255), 0, heat_hue_value, 0.5));
     }
 
 
-    // todo: write at least 2 tests on the data validity / size
     public static void loadEvents(UserTimetableDAO userTimetableDAO, String UserNumber) {
         try {
             String profileInfoQuery = "SELECT * FROM User_Timetable_Data where StudentNumber = ? AND NOT EventLocation = ''";
@@ -277,20 +275,13 @@ public class mapPageController extends sceneLoaderController {
         LocalDate end_date = LocalDate.parse(end_input);
         LocalDate today = LocalDate.parse(day_input);
 
-        return today.isAfter(start_date) || today.isEqual(start_date)
-                && today.isBefore(end_date) || today.isEqual(end_date);
+        return today.isAfter(start_date) && today.isBefore(end_date);
     }
 
     public void sortRooms(ArrayList<Event> calender_events) {
         // responsible for simply sorting and rendering rooms
         Set<String> quiet_areas = new HashSet<String>();
         Set<String> busy_areas = new HashSet<String>();
-
-        // TODO: FIX THE BUG IN THIS LOOP WHERE IT DUPLICATES ALL LISTS
-        /// confirmed to be inside quiet_areas & busy_areas
-        /// they aren't clearing themselves properly. still don't know how to fix
-        // todo: the database also appears to not clean out logged evens after they happen
-        //  (e.g. view event on 19th, switch to 20th, event still present, haven't tested tho)
 
         for (Building building : CampusBuildings) {
             if (building.eventCount.size() > 2) {
@@ -339,7 +330,7 @@ public class mapPageController extends sceneLoaderController {
         // need to parse in context, giving it a template of what each value means
         String input_data = "";
         for (Event event : calenderEvents)
-            input_data += input_data + event.pureEventData() + ". ";
+            input_data += input_data + event.pureeEventData() + ". ";
         String promptText = "Can you generate a summary of current activities including how clustered together the events are and their frequency given the following heatmap information for a university campus:" + input_data + " with a text limit of 200 characters including spaces and excluding any special characters." +
                 "You are printing an informational readout for a user. Please do not talk about any backend details or ask for further information. The data you have given is sufficent for their needs." +
                 "The formatting for each event (stored inside the input_data as nested lists) is as follows: " +
@@ -364,7 +355,12 @@ public class mapPageController extends sceneLoaderController {
 
 
     public void reloadHeatmap() {
+        // empties out all the stored data beforehand
         calenderEvents.clear();
+        for (Building building : CampusBuildings) {
+            building.eventCount.clear();
+        }
+
         AIMapSummary.setText("Summary loading...");
 
         loadEvents(userTimetableDAO, currentUserNumber);
@@ -375,65 +371,8 @@ public class mapPageController extends sceneLoaderController {
     }
 
 
-    public void generateMouseoverPrompts() {
-        for (Building building : CampusBuildings) {
-            Stage stage = stageController.getApplicationStage();
-            JFrame frame = new JFrame("MouseListener");
-            frame.setSize(CirclePreset.circleWidth, CirclePreset.circleWidth);
-            frame.setLocation(building.xPos - (CirclePreset.circleWidth / 2), building.yPos - (CirclePreset.circleWidth / 2));
-
-            JLabel label1 = new JLabel(building.letterID + " Block");
-            JLabel label2 = new JLabel(building.xPos + "x, " + building.yPos + "y");
-            JLabel label3 = new JLabel(building.eventCount + " events inside.");
-
-            MouseListener mouse = new MouseListener() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    label3.setText("mouse clicked at point:"
-                            + e.getX() + " "
-                            + e.getY() + "mouse clicked :" + e.getClickCount());
-                }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    label1.setText("mouse pressed at point:"
-                            + e.getX() + " " + e.getY());
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    label1.setText("mouse released at point:"
-                            + e.getX() + " " + e.getY());
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    label2.setText("mouse entered at point:"
-                            + e.getX() + " " + e.getY());
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    label2.setText("mouse exited through point:"
-                            + e.getX() + " " + e.getY());
-                }
-            };
-            frame.addMouseListener(mouse);
-
-            //todo: replace these with functional versions
-            ///stage.add(label1);
-            ///stage.add(label2);
-            ///stage.add(label3);
-
-            ///f.add(stage);
-            ///f.show();
-        }
-    }
-
-
     public void initialize() {
         try {
-            generateMouseoverPrompts();
             reloadHeatmap();
             model.initialiseAIModel();
         } catch (Exception e) {
